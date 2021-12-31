@@ -23,6 +23,7 @@ async function applyInputDevice(kind, deviceId, render) {
     localTracks[kind].stop();
   }
 
+  console.log("tack")
   // Render the current LocalTrack.
   localTracks[kind] = track;
   render(track);
