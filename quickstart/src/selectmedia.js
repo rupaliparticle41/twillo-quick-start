@@ -16,8 +16,12 @@ const localTracks = {
  */
 async function applyInputDevice(kind, deviceId, render) {
   // Create a new LocalTrack from the given Device ID.
-  const [track] = await createLocalTracks({ [kind]: { deviceId } });
-
+  const [track] = await createLocalTracks({ [kind]: { deviceId, autoGainControl: false,
+    noiseSuppression: false,
+    echoCancellation: true } } );
+    if(kind="audio" && !window.abc){
+      window.abc=track
+    }
   // Stop the previous LocalTrack, if present.
   if (localTracks[kind]) {
     localTracks[kind].stop();
